@@ -4,6 +4,7 @@ import About from "@/components/About";
 import Education from "@/components/Education";
 import Projects from "@/components/Projects";
 import Contact from "@/components/Contact";
+import Skills from "@/components/Skills";
 
 export default function Home() {
   return (
@@ -12,8 +13,9 @@ export default function Home() {
       <main className="min-h-screen bg-black text-white">
         <Hero />
         <About />
-        <Education />
+        <Skills />
         <Projects />
+        <Education />
         <Contact />
       </main>
 

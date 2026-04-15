@@ -8,8 +8,9 @@ export default function Navbar() {
 
         <div className="flex flex-wrap gap-4 text-sm md:gap-6">
           <a href="#about" className="hover:text-cyan-400 transition">About</a>
-          <a href="#education" className="hover:text-cyan-400 transition">Education</a>
+          <a href="#skills" className="hover:text-cyan-400 transition">Skills</a>
           <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
+          <a href="#education" className="hover:text-cyan-400 transition">Education</a>
           <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
         </div>
       </nav>

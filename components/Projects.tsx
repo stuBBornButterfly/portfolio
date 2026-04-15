@@ -47,8 +47,60 @@ export default function Projects() {
           viewport={{ once: true, amount: 0.15 }}
           className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
         >
-          {/* Project 1 */}
+          {/* Project 0 — GraphRAG Assistant (NEW) */}
           <motion.div
+            variants={cardVariants}
+            transition={{ duration: 0.5 }}
+            whileHover={{ scale: 1.03 }}
+            className="rounded-2xl border border-cyan-400/30 bg-zinc-900 p-6 transition hover:border-cyan-400/70 lg:col-span-2"
+          >
+            <div className="mb-3 flex items-center gap-2">
+              <span className="rounded-full bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-400">
+                Featured
+              </span>
+            </div>
+            <h3 className="mb-3 text-xl font-semibold">
+              Bangladesh Education Policy — GraphRAG Assistant
+            </h3>
+            <p className="mb-4 text-sm leading-7 text-zinc-400">
+              A multi-agent AI system that deploys four specialized LLM agents
+              (TimeAgent, ContradictionAgent, ImpactAgent, GroundingAgent) to
+              analyze policy documents simultaneously across temporal, causal,
+              contradiction, and verification dimensions. Includes a knowledge
+              graph visualizer, runtime PDF ingestion, session chat history,
+              and formatted PDF report export.
+            </p>
+            <div className="mb-4 flex flex-wrap gap-2">
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">LLaMA 3.1</span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">Groq API</span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">ChromaDB</span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">GraphRAG</span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">NetworkX</span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">Streamlit</span>
+              <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-zinc-300">Python</span>
+            </div>
+            <div className="flex gap-4 text-sm text-cyan-400">
+              <a
+                href="https://github.com/stuBBornButterfly"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-cyan-300"
+              >
+                GitHub
+              </a>
+              <a
+                href="https://graphrag-policy-assistant.streamlit.app/"
+                target="_blank"
+                rel="noreferrer"
+                className="hover:text-cyan-300"
+              >
+                Live Demo →
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Project 1 */}
+          {/* <motion.div
             variants={cardVariants}
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.03 }}
@@ -69,10 +121,10 @@ export default function Projects() {
             <div className="flex gap-4 text-sm text-cyan-400">
               <a href="https://github.com/stuBBornButterfly" target="_blank" rel="noreferrer" className="hover:text-cyan-300">GitHub</a>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Project 2 */}
-          <motion.div
+          {/* <motion.div
             variants={cardVariants}
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.03 }}
@@ -93,10 +145,10 @@ export default function Projects() {
             <div className="flex gap-4 text-sm text-cyan-400">
               <a href="https://github.com/stuBBornButterfly" target="_blank" rel="noreferrer" className="hover:text-cyan-300">GitHub</a>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Project 3 */}
-          <motion.div
+          {/* <motion.div
             variants={cardVariants}
             transition={{ duration: 0.5 }}
             whileHover={{ scale: 1.03 }}
@@ -117,7 +169,7 @@ export default function Projects() {
             <div className="flex gap-4 text-sm text-cyan-400">
               <a href="https://github.com/stuBBornButterfly" target="_blank" rel="noreferrer" className="hover:text-cyan-300">GitHub</a>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           {/* Project 4 — Sydney Train Network */}
           <motion.div

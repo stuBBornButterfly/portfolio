@@ -28,6 +28,7 @@ export default function Hero() {
 
         <a
           href="/cv.pdf"
+          target="_blank"
           className="inline-block rounded-full bg-cyan-400 px-6 py-3 font-medium text-black transition hover:bg-cyan-300"
         >
           Download CV
