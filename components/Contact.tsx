@@ -111,7 +111,7 @@ export default function Contact() {
                   name="from_name"
                   type="text"
                   required
-                  placeholder="John Doe"
+                  placeholder="Name"
                   value={form.from_name}
                   onChange={handleChange}
                   className="px-4 py-3 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:ring-2 focus:ring-teal-500 transition"
