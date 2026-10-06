@@ -2,9 +2,9 @@ import type { Project } from "@/types"
 
 export const projects: Project[] = [
   {
-    title: "PaperRAG: Multimodal RAG over Research Papers",
+    title: "PaperRAG: Multimodal RAG with a Faithfulness Evaluation Harness",
     blurb:
-      "Grounded Retrieval-Augmented Generation that answers questions over arXiv papers with inline citations, running entirely on open-weight models with no paid APIs.",
+      "A deployed system that answers questions over arXiv research papers with inline citations to the exact source passage, running entirely on open-weight models with no paid APIs.",
     period: "2026",
     tech: [
       "Python",
@@ -19,42 +19,66 @@ export const projects: Project[] = [
       "Gradio",
     ],
     highlights: [
-      "Hybrid retrieval combining BM25 sparse and dense BGE embeddings via Reciprocal Rank Fusion with a cross-encoder reranker, reaching MRR 0.90 and hit@4 0.95 (vs 0.675 / 0.85 dense-only baseline).",
-      "Faithfulness-evaluation harness using DeBERTa-v3 NLI to measure answer grounding, plus a Tesseract OCR ingestion path achieving ~0.94 word recall on scanned PDFs.",
-      "Deployed an interactive demo on Hugging Face Spaces serving a 4-bit quantized Qwen2.5-3B over a 2,300+ chunk vector index with citation-level grounding.",
+      "Passages are indexed twice, once by keyword (BM25) and once by meaning (dense BGE embeddings); both retrievers run per query and their rankings are fused via Reciprocal Rank Fusion before a cross-encoder reranker selects the final context, raising retrieval accuracy to MRR 0.90 and hit@4 0.95 from a 0.675 / 0.85 dense-only baseline.",
+      "Built a faithfulness-evaluation harness using a DeBERTa-v3 natural-language-inference model to test each generated sentence against its retrieved source, giving an automated measure of grounding and hallucination.",
+      "Added an OCR ingestion path (Tesseract) reaching 0.94 word recall on scanned PDFs, and deployed a 4-bit quantized model serving a 2,300+ chunk vector index.",
     ],
     github: "https://github.com/stuBBornButterfly/PaperRag",
     demo: "https://huggingface.co/spaces/stuBBornButterfly/paperrag",
     featured: true,
   },
   {
-    title: "Cross-Lingual Probing of Multilingual LLMs for Bangla Dyslexia Screening",
+    title: "Surface-Controlled Cross-Lingual Probing of Multilingual LMs for Bangla",
     blurb:
-      "B.Sc. thesis probing four frozen multilingual LLMs to test whether English phonological knowledge transfers to low-resource Bangla, with no fine-tuning and no clinical data.",
+      "B.Sc. thesis testing whether frozen multilingual LLMs transfer phonological and lexical knowledge from English to low-resource Bangla for dyslexia screening, with no fine-tuning and no clinical data.",
     period: "2026",
     tech: [
       "Python",
       "PyTorch",
       "Hugging Face Transformers",
       "XLM-RoBERTa",
-      "Llama 3.1 8B",
       "BLOOM 7B1",
       "mT5 XL",
+      "LLaMA 3.1 8B",
       "Scikit-learn",
-      "NumPy",
+      "SciPy",
     ],
     highlights: [
-      "Probed four pretraining recipes (masked encoder, causal decoder, encoder-decoder) on a curated 440-item English/Bangla stimulus set on a single GPU.",
-      "Built an interpretability pipeline extracting per-layer hidden states and training linear probes (5-fold CV), extended with Representational Similarity Analysis and causal forward-hook ablation.",
-      "After controls, real-vs-pseudoword transfer survived: BLOOM 7B1 0.92 F1 and a 0.56B XLM-R 0.86 F1; causal ablation localized mT5's signal to ~10 encoder units.",
+      "Extracted per-layer hidden representations from four models (XLM-RoBERTa, LLaMA 3.1 8B, BLOOM 7B1, mT5 XL), trained lightweight linear probes to identify what linguistic information each layer carries, then applied causal ablation to confirm which layers the transferable signal depends on.",
+      "Constructed a 440-item native-verified Bangla stimulus dataset with annotation guidelines, deliberately length-matched and surface-controlled so spelling shape alone could be measured and ruled out as a confound.",
+      "Demonstrated that pretraining coverage outweighs model scale, with BLOOM reaching 0.92 F1 and XLM-R 0.86 F1 on zero-shot English-to-Bangla real-versus-pseudoword discrimination.",
     ],
     github: "https://github.com/stuBBornButterfly/DysLex-Probe",
     featured: true,
   },
   {
-    title: "SmartGrid Monitor: Electricity Load Forecasting & Decision Support",
+    title: "SME Credit Decision Assistant: Verified LLM Credit Memos",
     blurb:
-      "Web-based grid monitoring platform that forecasts electricity load, flags anomalies, and models cost with peak-shaving what-if analysis, served as a live API + dashboard.",
+      "A credit origination system for small-business term lending on the public US SBA file: a transparent scorecard scores each application, an LLM drafts the credit memo, and a verifier blocks any figure it cannot trace to the record, supporting the analyst rather than automating the decision.",
+    period: "2026",
+    tech: [
+      "Python",
+      "Scikit-learn",
+      "XGBoost",
+      "PostgreSQL",
+      "SQL",
+      "R",
+      "Shiny for Python",
+      "Docker",
+      "pytest",
+    ],
+    highlights: [
+      "A weight-of-evidence logistic-regression scorecard fitted on 189,340 loans and validated out of time on 141,340 loans spanning the financial crisis (AUC 0.6393, Gini 0.2786, PSI 0.047) places each application in an approve, refer, or decline band; a gradient-boosted challenger scored higher in training but lost more than twice as much AUC under the shift.",
+      "Validation report showed an out-of-time calibration slope of 0.78 (95% CI 0.76-0.81), approving the model for ranking but not pricing; the memo verifier caught 36,445 of 36,445 injected faults, and an independent base-R rebuild matched the Python scorecard to 1e-5.",
+      "Built seven SQL reporting views on PostgreSQL with a maker-checker rule enforced by a database trigger, recording every draft, edit, decision, and override with a named user and timestamp.",
+    ],
+    github: "https://github.com/stuBBornButterfly/SME-Credit-Decision-Assistant",
+    featured: true,
+  },
+  {
+    title: "SmartGrid Monitor: Forecasting, Uncertainty Quantification & Anomaly Detection",
+    blurb:
+      "An end-to-end analytics platform on real Spanish grid data (hourly load, price, weather) that forecasts electricity demand, quantifies forecast uncertainty, and flags anomalous consumption.",
     period: "2026",
     tech: [
       "Python",
@@ -65,21 +89,22 @@ export const projects: Project[] = [
       "FastAPI",
       "Streamlit",
       "Docker",
-      "Hugging Face Spaces",
+      "Pandas",
+      "NumPy",
     ],
     highlights: [
-      "LSTM next-hour load forecast at 0.97% MAPE (273 MW MAE), beating persistence (3.7%) and seasonal-naive (8.6%) baselines, with an XGBoost benchmark at 0.98%.",
-      "3-sigma residual anomaly detector plus a real-price cost model with peak-shaving what-if (0.16% cost forecast error) and SHAP attribution surfacing recent load, solar, and hour-of-day as top drivers.",
-      "Multi-horizon quantile LSTM serving 24h-ahead P10/P90 bands through a FastAPI backend and Streamlit dashboard, deployed together in a single Docker Hugging Face Space.",
+      "An LSTM trained on time-windowed sequences predicts next-hour demand at 0.97% MAPE, extended to a multi-horizon quantile model producing calibrated P10/P90 uncertainty bands rather than point estimates; a 3-sigma residual rule flags anomalies and SHAP attributes each forecast to its drivers.",
+      "Benchmarked LSTM and XGBoost against persistence and seasonal-naive baselines to prove the forecasting gains are real.",
+      "Deployed a FastAPI backend and Streamlit dashboard as a single reproducible Docker container on Hugging Face Spaces.",
     ],
     github: "https://github.com/stuBBornButterfly/Smartgrid-Monitor",
     demo: "https://huggingface.co/spaces/stuBBornButterfly/smartgrid-monitor",
     featured: true,
   },
   {
-    title: "Bangladesh Education Policy GraphRAG Assistant",
+    title: "GraphRAG Policy Assistant: Multi-Agent Document Analysis",
     blurb:
-      "Multi-agent Graph-RAG pipeline running four specialized LLM agents for simultaneous temporal, causal, conflict, and verification analysis over policy documents.",
+      "An analysis system for Bangladesh education-policy documents that reports how policies evolved over time, where they contradict one another, what impact they claim, and whether those claims are supported by the source text.",
     period: "2025",
     tech: [
       "Python",
@@ -91,24 +116,11 @@ export const projects: Project[] = [
       "Streamlit",
     ],
     highlights: [
-      "Deployed four specialized agents (Time, Contradiction, Impact, Grounding) with independent semantic retrieval from a ChromaDB vector store.",
-      "Built a NetworkX knowledge-graph extraction system identifying named entities and inter-document relationships, rendered as an interactive force-directed visualization.",
-      "Implemented runtime PDF ingestion with all-MiniLM-L6-v2, a session-based chat history, and multi-agent PDF report export, deployed on Streamlit Community Cloud.",
+      "Four specialized LLM agents (Time, Contradiction, Impact, Grounding) each perform independent semantic retrieval over a ChromaDB vector store and analyse one dimension in parallel, with a dedicated grounding agent verifying claims before findings are combined into a single report.",
+      "Built a NetworkX knowledge-graph extraction module that identifies named entities (programs, budgets, organizations) and inter-document relationships from unstructured text, rendered as an interactive force-directed visualization.",
+      "Implemented runtime PDF ingestion with all-MiniLM-L6-v2, a session-based chat history, and multi-agent report export, deployed on Streamlit Community Cloud.",
     ],
     github: "https://github.com/stuBBornButterfly/graphrag-policy-assistant",
     featured: true,
-  },
-  {
-    title: "Alzheimer's Disease Detection",
-    blurb:
-      "Deep learning classification model for early-stage Alzheimer's detection from MRI brain scans using transfer learning and Grad-CAM interpretability.",
-    period: "Dec 2024",
-    tech: ["Python", "TensorFlow", "ResNet50", "VGG19", "CNN", "OpenCV"],
-    highlights: [
-      "Leveraged ResNet50 and VGG19 CNN architectures with transfer learning to classify early-stage Alzheimer's from MRI scans.",
-      "Processed and augmented MRI/CT datasets with OpenCV to normalize image quality and improve generalization to unseen patients.",
-      "Achieved high accuracy across disease severity stages and added Grad-CAM heatmap visualizations for model interpretability.",
-    ],
-    github: "https://github.com/stuBBornButterfly/Alzheimer-Detection",
   },
 ]
