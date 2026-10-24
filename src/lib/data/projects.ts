@@ -2,6 +2,33 @@ import type { Project } from "@/types"
 
 export const projects: Project[] = [
   {
+    title: "NeuroGraph: EEG Mental-Health Platform + Verified Student Assistant",
+    blurb:
+      "An EEG mental-health research platform on a Neo4j knowledge graph, paired with a knowledge-verified LangGraph student assistant: it screens resting-state EEG for depression signal with full provenance, then answers questions over the study graph, policies, and research with source-checked, crisis-aware replies. A research and screening prototype, not a diagnostic tool.",
+    period: "2026",
+    tech: [
+      "Python",
+      "Neo4j",
+      "LangGraph",
+      "Qwen2.5-3B (QLoRA)",
+      "EEGNet",
+      "XGBoost",
+      "MNE",
+      "Qdrant",
+      "FastAPI",
+      "Streamlit",
+      "Docker",
+      "MLflow",
+    ],
+    highlights: [
+      "EEG pipeline on the OpenNeuro ds003478 depression dataset: ICA / ICLabel / AutoReject cleaning and brain-rhythm biomarker extraction, trained with person-wise validation and logged to a Neo4j knowledge graph with full provenance; the headline model reaches person-level AUC 0.671 +/- 0.105 from sex and eyes-closed EEG.",
+      "A LangGraph student-support agent answers questions over university policies, the study graph, and published research using a QLoRA fine-tuned Qwen2.5-3B, hybrid BGE + BM25 retrieval over Qdrant, DeBERTa-NLI answer verification against sources, and Presidio PII redaction, routing distress or crisis messages to a fixed referral.",
+      "Served as FastAPI + Streamlit in Docker with MLflow experiment tracking and RAGAS evaluation; the QLoRA fine-tuned model is published on Hugging Face (neurograph-qwen2.5-3b-gguf).",
+    ],
+    github: "https://github.com/stuBBornButterfly/neurograph",
+    featured: true,
+  },
+  {
     title: "PaperRAG: Multimodal RAG with a Faithfulness Evaluation Harness",
     blurb:
       "A deployed system that answers questions over arXiv research papers with inline citations to the exact source passage, running entirely on open-weight models with no paid APIs.",
